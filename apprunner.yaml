@@ -1,8 +1,8 @@
-version: 1.01
+version: 1.02
 runtime: python311
 build:
   commands:
-    - python3.11 -m ensurepip --upgrade
+    - python3 -m ensurepip --upgrade
     - pip3 install Django==4.2.14
     - pip3 install gunicorn
     - python3 manage.py test
@@ -10,6 +10,6 @@ build:
       - pip3 install -r requirements.txt
 run:
   runtime-version: 3.11
-  command: gunicorn --workers 2 myproject311.wsgi 
+  command: gunicorn myproject311.wsgi --log-file -
   network:
     port: 8000
